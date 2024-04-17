@@ -18,6 +18,11 @@ pipeline {
                 }
             }
         }
+        stage('QualityGate'){
+            steps {
+                waitForQualityGate abortPipeline: true, credentialsId: 'sonar-token'
+            }
+        }
         stage('Deploy') {
             steps {
                 echo "Deployment complete"
